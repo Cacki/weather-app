@@ -2,13 +2,7 @@ const cityForm = document.querySelector("form");
 const weatherInformation = document.querySelector(".weather-information");
 const h2 = document.querySelector("h2");
 const className = "vanish";
-
-const updateCity = async (name) => {
-  const city = await getCity(name);
-  const weather = await getWeather(city);
-
-  return { city, weather };
-};
+const forecast = new Forecast();
 
 const updateUI = (data) => {
   const { city, weather } = data;
@@ -69,7 +63,8 @@ cityForm.addEventListener("submit", (event) => {
   const cityName = cityForm.city.value.trim();
   cityForm.reset();
 
-  updateCity(cityName)
+  forecast
+    .updateCity(cityName)
     .then((data) => updateUI(data))
     .catch((error) => handleError(error));
 });
