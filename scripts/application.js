@@ -3,6 +3,7 @@ const weatherInformation = document.querySelector(".weather-information");
 const h2 = document.querySelector("h2");
 const className = "vanish";
 const forecast = new Forecast();
+const storageCity = localStorage.getItem("cityName");
 
 const updateUI = (data) => {
   const { city, weather } = data;
@@ -45,6 +46,10 @@ const vanish = (classList) => {
   }
 };
 
+const updateLocalStorage = (name) => {
+  localStorage.setItem("cityName", name);
+};
+
 const handleError = (error) => {
   console.log(error.message);
   h2.innerHTML = `
@@ -57,14 +62,23 @@ const handleError = (error) => {
   vanish(weatherInformation.parentElement.classList);
 };
 
-cityForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const cityName = cityForm.city.value.trim();
-  cityForm.reset();
-
+const updateWeatherInfo = (cityName) => {
   forecast
     .updateCity(cityName)
-    .then((data) => updateUI(data))
+    .then((data) => {
+      updateUI(data);
+      updateLocalStorage(cityName);
+    })
     .catch((error) => handleError(error));
+};
+
+cityForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const cityName = cityForm.city.value.trim();
+  cityForm.reset();
+  updateWeatherInfo(cityName);
 });
+
+if (storageCity) {
+  updateWeatherInfo(storageCity);
+}

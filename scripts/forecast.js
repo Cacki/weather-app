@@ -10,7 +10,6 @@ class Forecast {
   async updateCity(name) {
     const city = await this.getCity(name);
     const weather = await this.getWeather(city);
-
     return { city, weather };
   }
 
@@ -28,7 +27,6 @@ class Forecast {
     const query = `${city.Key}?apikey=${this.key}`;
     const response = await fetch(this.conditionURL + query);
     const data = await response.json();
-
     return data[0];
   }
 }
