@@ -1,5 +1,5 @@
 body {
-  background-color: #ebfcff;
+  background-color: rgb(255, 250, 250);
   display: grid;
   justify-content: center;
   align-items: start;
@@ -18,7 +18,7 @@ body {
   row-gap: 20px;
 }
 .card-wrapper {
-  box-shadow: 0 0 7px #ccc;
+  box-shadow: 0 0 10px rgb(130, 130, 130);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -28,7 +28,7 @@ body {
 .card-wrapper .icon {
   position: absolute;
   bottom: 0;
-  background-color: #ebfcff;
+  background-color: rgb(255, 250, 250);
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
 }
@@ -45,6 +45,23 @@ body {
 
 h1 {
   text-align: center;
+}
+
+.change-location {
+  display: grid;
+  gap: 7px;
+  width: 80%;
+}
+.change-location label {
+  text-align: center;
+}
+.change-location input {
+  height: 30px;
+  font-size: large;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: white;
 }
 
 h2 {
